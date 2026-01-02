@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Varsha S | Portfolio</title>
+
+<style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 25px 60px;
+    display: flex;
+    gap: 25px;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ff2c6d;
+}
+
+/* SLIDER */
+.slider {
+    display: flex;
+    width: 400vw;
+    height: 100vh;
+    transition: transform 1s cubic-bezier(.77,0,.18,1);
+}
+
+/* PAGE */
+.page {
+    width: 100vw;
+    height: 100vh;
+    padding: 120px 80px;
+    flex-shrink: 0;
+    background: black;
+}
+
+/* HOME */
+.home {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    width: 40%;
+}
+
+.image img {
+    width: 360px;
+    filter: grayscale(100%);
+}
+
+.text {
+    width: 60%;
+    padding-left: 60px;
+}
+
+.hello {
+    color: #ff2c6d;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 70px;
+    font-weight: 900;
+}
+
+.role {
+    color: #ccc;
+    margin: 20px 0;
+}
+
+.desc {
+    border-left: 3px solid #ff2c6d;
+    padding-left: 20px;
+    color: #aaa;
+    max-width: 520px;
+}
+
+/* COMMON */
+.page h1 {
+    font-size: 48px;
+    color: #ff2c6d;
+    margin-bottom: 30px;
+}
+
+.page p {
+    max-width: 900px;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+/* SKILLS */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 600px;
+}
+
+.skill {
+    border: 1px solid #ff2c6d;
+    padding: 15px;
+    text-align: center;
+}
+
+/* REDIRECT OVERLAY */
+.redirect-box {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.redirect-box.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.redirect-box h2 {
+    color: #ff2c6d;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.redirect-box p {
+    color: #ccc;
+    max-width: 500px;
+}
+
+.loader {
+    margin-top: 30px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #333;
+    border-top: 4px solid #ff2c6d;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* PROJECT LIST */
+.project {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.project span {
+    color: #ccc;
+    font-size: 18px;
+}
+
+.project a {
+    color: #ff2c6d;
+    text-decoration: none;
+    border: 1px solid #ff2c6d;
+    padding: 6px 14px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.project a:hover {
+    background: #ff2c6d;
+    color: #fff;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <a onclick="goHome()">Home</a>
+    <a onclick="goAbout()">About</a>
+    <a onclick="goSkills()">Skills</a>
+    <a onclick="goProjects()">Projects</a>
+    
+    <a onclick="openRedirect(
+        'GitHub',
+        'Redirecting to my GitHub profile.',
+        'https://github.com/santhoshsujavarsha'
+    )">GitHub</a>
+
+    <a onclick="openRedirect(
+        'LinkedIn',
+        'Opening my LinkedIn profile.',
+        'https://www.linkedin.com/in/varsha-s-b2949b296'
+    )">LinkedIn</a>
+
+    <a onclick="openRedirect(
+        'E-mail',
+        'Opening email to contact me.',
+        'mailto:varshasanthosh232004@gmail.com'
+    )">E-mail</a>
+
+    <a onclick="openRedirect(
+        'Contact',
+        'Opening phone dialer.',
+        'tel:+917510564711'
+    )">Contact</a>
+</nav>
+
+<!-- SLIDER -->
+<div class="slider" id="slider">
+
+    <!-- HOME -->
+    <div class="page home">
+        <div class="image">
+            <img src="profile.jpg" alt="My Photo">
+        </div>
+        <div class="text">
+            <div class="hello">HELLO</div>
+            <div class="title">Portfolio</div>
+            <div class="role">
+                I’m <b>Varsha S</b><br>
+                System Associate
+            </div>
+            <div class="desc">
+                Passionate about IT systems, Python, and modern web technologies.
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="page">
+        <h1>About Me</h1>
+        <p>I began my professional journey at Infosys Mysore as a System Associate Trainee, where I built a strong foundation in IT systems and troubleshooting. After successfully completing my training, I transitioned into my current role as a System Associate at Infosys Trivandrum.</p>
+        <p>In this position, I contribute to maintaining and optimizing enterprise systems, ensuring seamless operations for clients across diverse industries. My experience has equipped me with skills in system administration, problem-solving, and collaborative teamwork in fast-paced environments.</p>
+        <p>I am passionate about leveraging technology to deliver reliable solutions and continuously expanding my expertise in IT infrastructure and emerging technologies.</p>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="page">
+    <h1>Projects</h1>
+
+    <div class="project">
+        <span>Phishing Detection Website – Machine Learning</span>
+        <a href="https://github.com/santhoshsujavarsha/phishing"
+           target="_blank">GitHub</a>
+    </div>
+
+    <div class="project">
+        <span>Weather Prediction – Machine Learning</span>
+        <a href="https://github.com/santhoshsujavarsha/weatherprediction"
+           target="_blank">GitHub</a>
+    </div>
+
+    <div class="project">
+        <span>Portfolio Website – HTML, CSS, JavaScript, Python</span>
+        <a href="https://github.com/santhoshsujavarsha/portfolio-website"
+           target="_blank">GitHub</a>
+    </div>
+</div>
+
+
+    <!-- SKILLS -->
+    <div class="page">
+        <h1>Skills</h1>
+        <div class="skills">
+            <div class="skill">Python</div>
+            <div class="skill">Flask</div>
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">MySQL</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- REDIRECT SCREEN -->
+<div id="redirectBox" class="redirect-box">
+    <h2 id="redirectTitle"></h2>
+    <p id="redirectText"></p>
+    <div class="loader"></div>
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+
+function goHome() { slider.style.transform = "translateX(0)"; }
+function goAbout() { slider.style.transform = "translateX(-100vw)"; }
+function goProjects() { slider.style.transform = "translateX(-200vw)"; }
+function goSkills() { slider.style.transform = "translateX(-300vw)"; }
+
+function openRedirect(title, text, url) {
+    document.getElementById("redirectTitle").innerText = title;
+    document.getElementById("redirectText").innerText = text;
+    document.getElementById("redirectBox").classList.add("active");
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
